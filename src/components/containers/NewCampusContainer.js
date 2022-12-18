@@ -18,12 +18,12 @@ class NewCampusContainer extends Component {
   constructor(props){
     super(props);
     this.state = {
-      firstname: "",
-      lastname: "",
-      email: "",
-      gpa: "",
+      name: "",
+      address: "",
+      description: "",
       imageUrl: "",
-      campusId: null,
+      students: "",
+      // campusId: null,
       redirect: false,
       redirectId: null
     };
@@ -41,12 +41,12 @@ class NewCampusContainer extends Component {
     event.preventDefault();  // Prevent browser reload/refresh after submit.
 
     let campus = {
-        firstname: this.state.firstname,
-        lastname: this.state.lastname,
-        email: this.state.email,
-        gpa: this.state.gpa,
+        name: this.state.name,
+        address: this.state.address,
+        description: this.state.description,
         imageUrl: this.state.imageUrl,
-        campusId: this.state.campusId
+        // campusId: this.state.campusId
+        students: this.state.students
     };
 
     // Add new campus in back-end database
@@ -58,7 +58,8 @@ class NewCampusContainer extends Component {
       address: "",
       description: "",
       imageUrl: "",
-      campusId: null,
+      // campusId: null,
+      students: "",
       redirect: true,
       redirectId: newCampus.id
     });
@@ -81,7 +82,7 @@ class NewCampusContainer extends Component {
       <div>
         <Header />
         <NewCampusView
-          handleChange = {this.handleChange}
+          handleChange={this.handleChange}
           handleSubmit={this.handleSubmit}
         />
       </div>
@@ -102,3 +103,4 @@ const mapDispatch = (dispatch) => {
 // NewCampusContainer uses "connect" function to connect to Redux Store and to read values from the Store
 // (and re-read the values when the Store State updates).
 export default connect(null, mapDispatch)(NewCampusContainer);
+
