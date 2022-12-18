@@ -22,8 +22,6 @@ class NewCampusContainer extends Component {
       address: "",
       description: "",
       imageUrl: "",
-      students: "",
-      // campusId: null,
       redirect: false,
       redirectId: null
     };
@@ -45,8 +43,6 @@ class NewCampusContainer extends Component {
         address: this.state.address,
         description: this.state.description,
         imageUrl: this.state.imageUrl,
-        // campusId: this.state.campusId
-        students: this.state.students
     };
 
     // Add new campus in back-end database
@@ -58,8 +54,6 @@ class NewCampusContainer extends Component {
       address: "",
       description: "",
       imageUrl: "",
-      // campusId: null,
-      students: "",
       redirect: true,
       redirectId: newCampus.id
     });

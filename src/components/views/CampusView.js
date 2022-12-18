@@ -28,7 +28,6 @@ const CampusView = (props) => {
 };
 
 const StudentsList = ({students}) => {
-  // const { campus } = props;
   if (!students.length) {
     return (<h3>There are no students enrolled here.</h3>)
   } else {
