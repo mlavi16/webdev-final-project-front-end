@@ -23,7 +23,7 @@ class NewStudentContainer extends Component {
       email: "",
       gpa: null,
       imageUrl: "",
-      campusId: null,
+      campusId: props.location.state,
       redirect: false,
       redirectId: null
     };
@@ -83,8 +83,9 @@ class NewStudentContainer extends Component {
       <div>
         <Header />
         <NewStudentView
-          handleChange = {this.handleChange}
+          handleChange={this.handleChange}
           handleSubmit={this.handleSubmit}
+          campusId={this.state.campusId}
         />
       </div>
     );

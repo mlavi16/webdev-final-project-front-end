@@ -35,7 +35,7 @@ const useStyles = makeStyles( () => ({
 }));
 
 const NewStudentView = (props) => {
-  const {handleChange, handleSubmit } = props;
+  const {handleChange, handleSubmit, campusId} = props;
   const classes = useStyles();
 
   // Render a New Student view with an input form
@@ -62,7 +62,7 @@ const NewStudentView = (props) => {
             <br/>
 
             <label style={{color:'#11153e', fontWeight: 'bold'}}>Campus Id: </label>
-            <input type="number" name="campusId" onChange={(e) => handleChange(e)} />
+            <input type="number" name="campusId" value={campusId} onChange={(e) => handleChange(e)} />
             <br/>
             <br/>
 
