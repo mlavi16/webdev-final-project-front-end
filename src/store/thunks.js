@@ -49,7 +49,7 @@ export const addCampusThunk = (campus) => async (dispatch) => {  // The THUNK
 
 // Delete Campus
 // THUNK CREATOR:
-export const deleteCamousThunk = campusId => async dispatch => {  // The THUNK
+export const deleteCampusThunk = campusId => async dispatch => {  // The THUNK
   try {
     // API "delete" call to delete campus (based on "campusID") from database
     await axios.delete(`/api/campuses/${campusId}`);
