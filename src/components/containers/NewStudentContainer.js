@@ -18,10 +18,11 @@ class NewStudentContainer extends Component {
   constructor(props){
     super(props);
     this.state = {
-      firstname: "", 
-      lastname: "", 
-      campusId: null, 
-      redirect: false, 
+      firstname: "",
+      lastname: "",
+      email: "",
+      campusId: null,
+      redirect: false,
       redirectId: null
     };
   }
@@ -40,18 +41,20 @@ class NewStudentContainer extends Component {
     let student = {
         firstname: this.state.firstname,
         lastname: this.state.lastname,
+        email: this.state.email,
         campusId: this.state.campusId
     };
-    
+
     // Add new student in back-end database
     let newStudent = await this.props.addStudent(student);
 
     // Update state, and trigger redirect to show the new student
     this.setState({
-      firstname: "", 
-      lastname: "", 
-      campusId: null, 
-      redirect: true, 
+      firstname: "",
+      lastname: "",
+      email: "",
+      campusId: null,
+      redirect: true,
       redirectId: newStudent.id
     });
   }
@@ -72,11 +75,11 @@ class NewStudentContainer extends Component {
     return (
       <div>
         <Header />
-        <NewStudentView 
-          handleChange = {this.handleChange} 
-          handleSubmit={this.handleSubmit}      
+        <NewStudentView
+          handleChange = {this.handleChange}
+          handleSubmit={this.handleSubmit}
         />
-      </div>          
+      </div>
     );
   }
 }
@@ -91,6 +94,6 @@ const mapDispatch = (dispatch) => {
 }
 
 // Export store-connected container by default
-// NewStudentContainer uses "connect" function to connect to Redux Store and to read values from the Store 
+// NewStudentContainer uses "connect" function to connect to Redux Store and to read values from the Store
 // (and re-read the values when the Store State updates).
 export default connect(null, mapDispatch)(NewStudentContainer);
