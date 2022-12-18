@@ -21,7 +21,7 @@ class NewStudentContainer extends Component {
       firstname: "",
       lastname: "",
       email: "",
-      gpa: "",
+      gpa: null,
       imageUrl: "",
       campusId: null,
       redirect: false,
@@ -31,6 +31,7 @@ class NewStudentContainer extends Component {
 
   // Capture input data when it is entered
   handleChange = event => {
+    console.log("ooh");
     this.setState({
       [event.target.name]: event.target.value
     });
