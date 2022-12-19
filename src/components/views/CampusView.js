@@ -16,11 +16,11 @@ const CampusView = (props) => {
   return (
     <div>
       <h1>{campus.name}</h1>
-      <img src={campus.imageUrl} alt={campus.name} width="200px" />
+      <img src={campus.imageUrl} alt="campus_image" width="200px" />
       <p>{campus.address}</p>
       <p>{campus.description}</p>
       <StudentsList students={campus.students}/>
-      <Link to={`/newstudent`}>
+      <Link to={{pathname: `/newstudent`, state: campus.id}}>
         <button>Add New Student</button>
       </Link>
     </div>
