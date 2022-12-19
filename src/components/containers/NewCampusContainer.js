@@ -22,6 +22,7 @@ class NewCampusContainer extends Component {
       address: "",
       description: "",
       imageUrl: "",
+      errorMsg: "",
       redirect: false,
       redirectId: null
     };
@@ -49,6 +50,7 @@ class NewCampusContainer extends Component {
     let newCampus = await this.props.addCampus(campus);
 
     // Update state, and trigger redirect to show the new campus
+    if (newCampus.id) {
     this.setState({
       name: "",
       address: "",
@@ -57,6 +59,13 @@ class NewCampusContainer extends Component {
       redirect: true,
       redirectId: newCampus.id
     });
+    } else {
+      // If an error has occured
+      this.setState({
+        errorMsg: newCampus.data,
+        redirect: false
+      });
+    }
   }
 
   // Unmount when the component is being removed from the DOM:
@@ -78,6 +87,7 @@ class NewCampusContainer extends Component {
         <NewCampusView
           handleChange={this.handleChange}
           handleSubmit={this.handleSubmit}
+          errorMsg={this.state.errorMsg}
         />
       </div>
     );
