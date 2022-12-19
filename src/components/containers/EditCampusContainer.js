@@ -40,7 +40,7 @@ class EditCampusContainer extends Component {
 
   // Capture input data when it is entered
   handleChange = event => {
-    console.log("hiiii");
+    console.log(this.state);
     this.setState({
       [event.target.name]: event.target.value
     });
@@ -52,11 +52,18 @@ class EditCampusContainer extends Component {
 
     let campus = {
       id: this.props.campus.id,
-      name: this.state.name,
-      address: this.state.address,
-      description: this.state.description,
-      imageURL: this.state.imageUrl
+      name: this.state.name === "" ? this.props.campus.name : this.state.name,
+      address: this.state.address == "" ? this.props.campus.address : this.state.address,
+      description: this.state.description == "" ? this.props.campus.description : this.state.description,
+      imageUrl: this.state.imageUrl == "" ? this.props.campus.imageUrl : this.state.imageUrl
     };
+    // let campus = {
+    //   id: this.props.campus.id,
+    //   name: this.state.name,
+    //   address: this.state.address,
+    //   description: this.state.description,
+    //   imageUrl: this.state.imageUrl
+    // };
 
     // Edit the campus in back-end database
     await this.props.editCampus(campus);
