@@ -53,9 +53,9 @@ class EditCampusContainer extends Component {
     let campus = {
       id: this.props.campus.id,
       name: this.state.name === "" ? this.props.campus.name : this.state.name,
-      address: this.state.address == "" ? this.props.campus.address : this.state.address,
-      description: this.state.description == "" ? this.props.campus.description : this.state.description,
-      imageUrl: this.state.imageUrl == "" ? this.props.campus.imageUrl : this.state.imageUrl
+      address: this.state.address === "" ? this.props.campus.address : this.state.address,
+      description: this.state.description === "" ? this.props.campus.description : this.state.description,
+      imageUrl: this.state.imageUrl === "" ? this.props.campus.imageUrl : this.state.imageUrl
     };
     // let campus = {
     //   id: this.props.campus.id,
