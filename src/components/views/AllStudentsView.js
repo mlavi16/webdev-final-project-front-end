@@ -36,6 +36,9 @@ const AllStudentsView = (props) => {
                 <h2>{name}</h2>
               </Link>
               <button onClick={() => deleteStudent(student.id)}>Delete</button>
+              <Link to={`/editstudent/${student.id}`}>
+              <button> Edit </button>
+            </Link>
               <hr/>
             </div>
           );
