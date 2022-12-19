@@ -46,7 +46,7 @@ class NewStudentContainer extends Component {
       lastname: this.state.lastname,
       email: this.state.email,
       gpa: this.state.gpa,
-      imageUrl: this.state.imageUrl,
+      imageUrl: this.state.imageUrl === "" ? "https://www.commonsense.org/sites/default/files/png/2020-12/30-fun-ways-to-celebrate-the-end-of-the-school-year-from-a-distance-article.png" : this.state.imageUrl,
       campusId: this.state.campusId
     };
 
