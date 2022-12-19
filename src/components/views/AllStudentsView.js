@@ -8,6 +8,9 @@ import { Link } from "react-router-dom";
 
 const AllStudentsView = (props) => {
   const {students, deleteStudent} = props;
+
+  //TODO: FIX STUDENT VIEW SO HEADING + BUTTON STILL SHOWS UP IF LIST IS EMPTY
+
   // If there is no student, display a message
   if (!students.length) {
     return (
