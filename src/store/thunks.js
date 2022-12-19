@@ -44,6 +44,7 @@ export const addCampusThunk = (campus) => async (dispatch) => {  // The THUNK
     return res.data;
   } catch(err) {
     console.error(err);
+    return err.response;
   }
 };
 
@@ -68,8 +69,10 @@ export const editCampusThunk = campus => async dispatch => {  // The THUNK
     let updatedCampus = await axios.put(`/api/campuses/${campus.id}`, campus);
     // Update successful so change state with dispatch
     dispatch(ac.editCampus(updatedCampus));
+    return updatedCampus;
   } catch(err) {
     console.error(err);
+    return err.response;
   }
 };
 
@@ -113,6 +116,7 @@ export const addStudentThunk = (student) => async (dispatch) => {  // The THUNK
     return res.data;
   } catch(err) {
     console.error(err);
+    return err.response;
   }
 };
 
@@ -137,8 +141,10 @@ export const editStudentThunk = student => async dispatch => {  // The THUNK
     let updatedStudent = await axios.put(`/api/students/${student.id}`, student);
     // Update successful so change state with dispatch
     dispatch(ac.editStudent(updatedStudent));
+    return updatedStudent;
   } catch(err) {
     console.error(err);
+    return err.response;
   }
 };
 

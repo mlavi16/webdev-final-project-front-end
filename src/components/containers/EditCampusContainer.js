@@ -26,6 +26,7 @@ class EditCampusContainer extends Component {
       address: "",
       description: "",
       imageUrl: "",
+      errorMsg: "",
       redirect: false,
       redirectId: null
     };
@@ -56,18 +57,28 @@ class EditCampusContainer extends Component {
     };
 
     // Edit the campus in back-end database
-    this.props.editCampus(campus);
+    let updatedCampus = await this.props.editCampus(campus);
+    console.log(updatedCampus);
 
     // Update state, and trigger redirect to show the new campus
-    this.setState({
-      id: "",
-      name: "",
-      address: "",
-      description: "",
-      imageUrl: "",
-      redirect: true,
-      redirectId: this.props.campus.id
-    });
+    if (updatedCampus.data && updatedCampus.data.id) {
+      this.setState({
+        id: "",
+        name: "",
+        address: "",
+        description: "",
+        imageUrl: "",
+        redirect: true,
+        redirectId: this.props.campus.id
+      });
+    } else {
+      // If editCampus returned an error
+      this.setState({
+        errorMsg: updatedCampus.data,
+        redirect: false
+      });
+    }
+
   }
 
   // Unmount when the component is being removed from the DOM:
@@ -89,6 +100,7 @@ class EditCampusContainer extends Component {
           handleChange={this.handleChange}
           handleSubmit={this.handleSubmit}
           campus={this.props.campus}
+          errorMsg={this.state.errorMsg}
         />
       </div>
     );

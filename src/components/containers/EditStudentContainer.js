@@ -28,6 +28,7 @@ class EditStudentContainer extends Component {
       gpa: null,
       imageUrl: "",
       campusId: null,
+      errorMsg: "",
       redirect: false,
       redirectId: null
     };
@@ -60,20 +61,29 @@ class EditStudentContainer extends Component {
     };
 
     // Edit the student in back-end database
-    this.props.editStudent(student);
+    let updatedStudent = await this.props.editStudent(student);
 
     // Update state, and trigger redirect to show the new student
-    this.setState({
-      id: "",
-      firstname: "",
-      lastname: "",
-      email: "",
-      gpa: null,
-      imageUrl: "",
-      campusId: null,
-      redirect: true,
-      redirectId: this.props.student.id
-    });
+    if (updatedStudent.data && updatedStudent.data.id) {
+      this.setState({
+        id: "",
+        firstname: "",
+        lastname: "",
+        email: "",
+        gpa: null,
+        imageUrl: "",
+        campusId: null,
+        redirect: true,
+        redirectId: this.props.student.id
+      });
+    } else {
+      // If editStudent returned an error
+      const errorMsg = updatedStudent.data.indexOf("students_campusId_fkey") >= 0 ? "Campus does not exist" : updatedStudent.data;
+      this.setState({
+        errorMsg: errorMsg,
+        redirect: false
+      });
+    }
   }
 
   // Unmount when the component is being removed from the DOM:
@@ -95,6 +105,7 @@ class EditStudentContainer extends Component {
           handleChange={this.handleChange}
           handleSubmit={this.handleSubmit}
           student={this.props.student}
+          errorMsg={this.state.errorMsg}
         />
       </div>
     );

@@ -32,6 +32,12 @@ const useStyles = makeStyles( () => ({
     borderRadius: '5px 5px 0px 0px',
     padding: '3px'
   },
+  error: {
+    color: 'red',
+    display: 'table-caption',
+    padding: '20px 0px',
+    textAlign: 'center'
+  }
 }));
 
 const NewStudentView = (props) => {
@@ -77,11 +83,15 @@ const NewStudentView = (props) => {
             <br/>
 
             <label style={{color:'#11153e', fontWeight: 'bold'}}>Student GPA: </label>
-            <input type="number" step="0.01" min="0" max="4.0000000000000000" name="gpa" onChange={(e) => handleChange(e)} />
+            <input style={{width: '140px'}} type="number" step="0.01" min="0" max="4.0" name="gpa" onChange={(e) => handleChange(e)} />
             <br/>
             <br/>
 
-            <Button variant="contained" color="primary" type="submit">
+            <div className={classes.error}>
+              {props.errorMsg}
+            </div>
+
+            <Button style={{marginRight: '80px'}} variant="contained" color="primary" type="submit">
               Submit
             </Button>
             <br/>
