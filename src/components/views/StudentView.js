@@ -16,7 +16,7 @@ const StudentView = (props) => {
   return (
     <div>
       <h1>{student.firstname + " " + student.lastname}</h1>
-      <img src={student.imageUrl} alt="student_image" width="250px"></img>
+      {student.imageUrl && <img src={student.imageUrl} alt="student_image" width="250px"></img>}
       <CampusOfStudent campus={student.campus} />
       <h3>Email: {student.email}</h3>
       {student.gpa && <h3>GPA: {student.gpa}</h3>}

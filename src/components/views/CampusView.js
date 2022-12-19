@@ -16,9 +16,9 @@ const CampusView = (props) => {
   return (
     <div>
       <h1>{campus.name}</h1>
-      <img src={campus.imageUrl} alt="campus_image" width="200px" />
+      {campus.imageUrl && <img src={campus.imageUrl} alt="campus_image" width="200px" />}
       <p>{campus.address}</p>
-      <p>{campus.description}</p>
+      {campus.description && <p>{campus.description}</p>}
       <StudentsList students={campus.students} />
       <br /><br />
       <Link to={{pathname: `/newstudent`, state: campus.id}}>
