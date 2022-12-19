@@ -43,7 +43,7 @@ class NewCampusContainer extends Component {
         name: this.state.name,
         address: this.state.address,
         description: this.state.description,
-        imageUrl: this.state.imageUrl,
+        imageUrl: this.state.imageUrl === "" ? "https://images.unsplash.com/photo-1607237138185-eedd9c632b0b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8Y29sbGVnZSUyMGNhbXB1c3xlbnwwfHwwfHw%3D&w=1000&q=80" : this.state.imageUrl,
     };
 
     // Add new campus in back-end database
