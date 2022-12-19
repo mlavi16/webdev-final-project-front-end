@@ -27,6 +27,7 @@ class EditStudentContainer extends Component {
       email: "",
       gpa: null,
       imageUrl: "",
+      campusId: null,
       redirect: false,
       redirectId: null
     };
@@ -54,7 +55,8 @@ class EditStudentContainer extends Component {
       lastname: this.state.lastname === "" ? this.props.student.lastname : this.state.lastname,
       email: this.state.email === "" ? this.props.student.email : this.state.email,
       gpa: this.state.gpa === null ? this.props.student.gpa : this.state.gpa,
-      imageUrl: this.state.imageUrl === "" ? this.props.student.imageUrl : this.state.imageUrl
+      imageUrl: this.state.imageUrl === "" ? this.props.student.imageUrl : this.state.imageUrl,
+      campusId: this.state.campusId == null ? this.props.student.campusId : this.state.campusId
     };
 
     // Edit the student in back-end database
@@ -68,6 +70,7 @@ class EditStudentContainer extends Component {
       email: "",
       gpa: null,
       imageUrl: "",
+      campusId: null,
       redirect: true,
       redirectId: this.props.student.id
     });
