@@ -44,6 +44,7 @@ export const addCampusThunk = (campus) => async (dispatch) => {  // The THUNK
     return res.data;
   } catch(err) {
     console.error(err);
+    return err.response;
   }
 };
 
@@ -113,6 +114,7 @@ export const addStudentThunk = (student) => async (dispatch) => {  // The THUNK
     return res.data;
   } catch(err) {
     console.error(err);
+    return err.response;
   }
 };
 
