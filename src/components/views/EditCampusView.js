@@ -32,6 +32,12 @@ const useStyles = makeStyles( () => ({
     borderRadius: '5px 5px 0px 0px',
     padding: '3px'
   },
+  error: {
+    color: 'red',
+    display: 'table-caption',
+    padding: '20px 0px',
+    textAlign: 'center'
+  }
 }));
 
 const EditCampusView = (props) => {
@@ -71,7 +77,11 @@ const EditCampusView = (props) => {
             <br/>
             <br/>
 
-            <Button variant="contained" color="primary" type="submit">
+            <div className={classes.error}>
+              {props.errorMsg}
+            </div>
+
+            <Button style={{marginRight: '80px'}} variant="contained" color="primary" type="submit">
               Submit
             </Button>
             <br/>
