@@ -10,7 +10,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 // Create styling for the input form
 const useStyles = makeStyles( () => ({
-  formContainer:{  
+  formContainer:{
     width: '500px',
     backgroundColor: '#f0f0f5',
     borderRadius: '5px',
@@ -20,7 +20,7 @@ const useStyles = makeStyles( () => ({
     flexGrow: 1,
     textAlign: 'left',
     textDecoration: 'none'
-  }, 
+  },
   customizeAppBar:{
     backgroundColor: '#11153e',
     shadows: ['none'],
@@ -50,19 +50,34 @@ const NewStudentView = (props) => {
               Add a Student
             </Typography>
           </div>
-          <form style={{textAlign: 'center'}} onSubmit={(e) => handleSubmit(e)}>
+          <form style={{textAlign: 'right', display: 'table', margin: 'auto'}} onSubmit={(e) => handleSubmit(e)}>
             <label style= {{color:'#11153e', fontWeight: 'bold'}}>First Name: </label>
-            <input type="text" name="firstname" onChange ={(e) => handleChange(e)} />
+            <input type="text" name="firstname" onChange ={(e) => handleChange(e)} required />
             <br/>
             <br/>
 
             <label style={{color:'#11153e', fontWeight: 'bold'}}>Last Name: </label>
-            <input type="text" name="lastname" onChange={(e) => handleChange(e)} />
+            <input type="text" name="lastname" onChange={(e) => handleChange(e)} required />
             <br/>
             <br/>
 
             <label style={{color:'#11153e', fontWeight: 'bold'}}>Campus Id: </label>
-            <input type="text" name="campusId" onChange={(e) => handleChange(e)} />
+            <input type="number" name="campusId" onChange={(e) => handleChange(e)} />
+            <br/>
+            <br/>
+
+            <label style={{color:'#11153e', fontWeight: 'bold'}}>Student Email: </label>
+            <input type="email" name="email" onChange={(e) => handleChange(e)} required />
+            <br/>
+            <br/>
+
+            <label style={{color:'#11153e', fontWeight: 'bold'}}>Image URL: </label>
+            <input type="text" name="imageUrl" onChange={(e) => handleChange(e)} />
+            <br/>
+            <br/>
+
+            <label style={{color:'#11153e', fontWeight: 'bold'}}>Student GPA: </label>
+            <input type="number" step="0.01" min="0" max="4.0000000000000000" name="gpa" onChange={(e) => handleChange(e)} />
             <br/>
             <br/>
 
@@ -74,7 +89,7 @@ const NewStudentView = (props) => {
           </form>
           </div>
       </div>
-    </div>    
+    </div>
   )
 }
 
