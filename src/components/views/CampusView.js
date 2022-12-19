@@ -20,12 +20,16 @@ const CampusView = (props) => {
       <p>{campus.address}</p>
       <p>{campus.description}</p>
       <StudentsList students={campus.students} />
+      <br /><br />
       <Link to={{pathname: `/newstudent`, state: campus.id}}>
         <button>Add New Student</button>
       </Link>
       <br /><br />
       <Link to={`/campuses`}>
         <button onClick={() => deleteCampus(campus.id)}>Delete Campus</button>
+      </Link>
+      <Link to={`/editcampus/${campus.id}`}>
+        <button>Edit Campus</button>
       </Link>
     </div>
   );
