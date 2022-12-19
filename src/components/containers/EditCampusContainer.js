@@ -9,6 +9,7 @@ import Header from './Header';
 import { Component } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
+import { withRouter } from "react-router-dom";
 
 import EditCampusView from '../views/EditCampusView';
 import {
@@ -21,7 +22,7 @@ class EditCampusContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: "",
+      name: this.props.name,
       address: "",
       description: "",
       imageUrl: "",
@@ -33,14 +34,11 @@ class EditCampusContainer extends Component {
   // Get the specific campus data from back-end database
   componentDidMount() {
     // Get campus ID from URL (API link)
-    this.props.fetchCampus(this.props.match.params.id);
-    // or w/o ID:
-    // this.props.fetchCampus(this.props.location.state.id);
+    this.props.fetchCampus(this.props.match.params.id)
   }
 
   // Capture input data when it is entered
   handleChange = event => {
-    console.log(this.state);
     this.setState({
       [event.target.name]: event.target.value
     });
@@ -49,7 +47,6 @@ class EditCampusContainer extends Component {
   // Take action after user click the submit button
   handleSubmit = async event => {
     event.preventDefault();  // Prevent browser reload/refresh after submit.
-
     let campus = {
       id: this.props.campus.id,
       name: this.state.name === "" ? this.props.campus.name : this.state.name,
@@ -57,19 +54,13 @@ class EditCampusContainer extends Component {
       description: this.state.description === "" ? this.props.campus.description : this.state.description,
       imageUrl: this.state.imageUrl === "" ? this.props.campus.imageUrl : this.state.imageUrl
     };
-    // let campus = {
-    //   id: this.props.campus.id,
-    //   name: this.state.name,
-    //   address: this.state.address,
-    //   description: this.state.description,
-    //   imageUrl: this.state.imageUrl
-    // };
 
     // Edit the campus in back-end database
-    await this.props.editCampus(campus);
+    this.props.editCampus(campus);
 
     // Update state, and trigger redirect to show the new campus
     this.setState({
+      id: "",
       name: "",
       address: "",
       description: "",
@@ -90,7 +81,6 @@ class EditCampusContainer extends Component {
     if (this.state.redirect) {
       return (<Redirect to={`/campus/${this.state.redirectId}`} />)
     }
-
     // Display the input form via the corresponding View component
     return (
       <div>
@@ -104,6 +94,7 @@ class EditCampusContainer extends Component {
     );
   }
 }
+
 // The following 2 input arguments are passed to the "connect" function used by "EditCampusContainer" component to connect to Redux Store.
 // 1. The "mapState" argument specifies the data from Redux Store that the component needs.
 // The "mapState" is called when the Store State changes, and it returns a data object of "campus".
@@ -125,5 +116,5 @@ const mapDispatch = (dispatch) => {
 // Export store-connected container by default
 // EditCampusContainer uses "connect" function to connect to Redux Store and to read values from the Store
 // (and re-read the values when the Store State updates).
-export default connect(mapState, mapDispatch)(EditCampusContainer);
+export default withRouter(connect(mapState, mapDispatch)(EditCampusContainer));
 
