@@ -23,20 +23,23 @@ const StudentView = (props) => {
       <Link to={'/students'} >
         <button onClick={() => deleteStudent(student.id)}>Delete</button>
       </Link>
+      <Link to={`/editstudent/${student.id}`}>
+        <button> Edit </button>
+      </Link>
     </div>
   );
 
 };
 
-const CampusOfStudent = ({campus}) => {
+const CampusOfStudent = ({ campus }) => {
   if (!campus) {
     return (<h3>This student is not enrolled at any campus.</h3>)
   } else {
     return (
-    <Link to={`/campus/${campus.id}`}>
-      <h2>{campus.name}</h2>
-    </Link>
-  )
+      <Link to={`/campus/${campus.id}`}>
+        <h2>{campus.name}</h2>
+      </Link>
+    )
   }
 }
 
