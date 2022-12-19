@@ -10,16 +10,45 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import {
   fetchCampusThunk,
-  deleteCampusThunk
+  deleteCampusThunk,
+  editStudentThunk
 } from "../../store/thunks";
 
 import { CampusView } from "../views";
 
 class CampusContainer extends Component {
+  // Initialize state
+  constructor(props) {
+    super(props);
+    this.state = {
+      id: null,
+      campusId: null,
+    };
+  }
+
   // Get the specific campus data from back-end database
   componentDidMount() {
     // Get campus ID from URL (API link)
     this.props.fetchCampus(this.props.match.params.id);
+  }
+
+  removeFromCampus = async (studentId) => {
+    let newStudent = {
+      id: studentId,
+      campusId: null
+    };
+    console.log(newStudent);
+
+    // Edit the campus in back-end database
+    this.props.editStudent(newStudent);
+    // Update campus with edited student
+    this.props.fetchCampus(this.props.match.params.id);
+
+    // Update state, and trigger redirect to show the new campus
+    this.setState({
+      id: "",
+      campusId: null
+    })
   }
 
   // Render a Campus view by passing campus data as props to the corresponding View component
@@ -30,7 +59,8 @@ class CampusContainer extends Component {
         <CampusView
           campus={this.props.campus}
           deleteCampus={this.props.deleteCampus}
-          />
+          removeFromCampus={this.removeFromCampus}
+        />
       </div>
     );
   }
@@ -42,6 +72,7 @@ class CampusContainer extends Component {
 const mapState = (state) => {
   return {
     campus: state.campus,  // Get the State object from Reducer "campus"
+    student: state.student  // Get the State object from Reducer "student"
   };
 };
 // 2. The "mapDispatch" argument is used to dispatch Action (Redux Thunk) to Redux Store.
@@ -50,6 +81,7 @@ const mapDispatch = (dispatch) => {
   return {
     fetchCampus: (id) => dispatch(fetchCampusThunk(id)),
     deleteCampus: (campusId) => dispatch(deleteCampusThunk(campusId)),
+    editStudent: (student) => dispatch(editStudentThunk(student))
   };
 };
 
